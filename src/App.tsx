@@ -15,7 +15,7 @@ import { Settings } from './pages/Settings'
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading } = useAuth()
-  
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -23,15 +23,15 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
       </div>
     )
   }
-  
+
   return user ? <>{children}</> : <Navigate to="/auth" />
 }
 
 const AppContent: React.FC = () => {
   const { user } = useAuth()
-  
+
   return (
-    <Router>
+    <Router basename="/docu-gen">
       <Routes>
         <Route path="/auth" element={user ? <Navigate to="/dashboard" /> : <Auth />} />
         <Route path="/" element={<Navigate to="/dashboard" />} />
